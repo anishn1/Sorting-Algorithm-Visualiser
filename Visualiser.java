@@ -1,6 +1,6 @@
 public class Visualiser {
-    // private static final int SIZE = 10; // sizeof array
-    // private static final int WIDTH = 50; // max num of # for bar
+//     private static final int SIZE = 10; // sizeof array
+     private static final int WIDTH = 100; // max num of # for bar
 
     public static void main(String[] args) throws InterruptedException {
         int[] arr = {3,9,4,1,7,8,2,5,6};
@@ -20,7 +20,11 @@ public class Visualiser {
             }
         }
         for (int i : arr) {
-            String bar = "#".repeat(i);
+            int scaled = (i * WIDTH) / max;
+            if (scaled < 1) {
+                scaled = 1;
+            }
+            String bar = "#".repeat(scaled);
             if (i==elem1 || i==elem2) {
                 System.out.printf("%d: [%s]%n", i, bar);
             } else {
