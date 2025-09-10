@@ -23,7 +23,7 @@ public class BubbleSort extends Sorter {
                     swapped = true;
                 }
                 printArrayPos(arr, j, j+1);
-                Thread.sleep(100);
+                Thread.sleep(50);
             }
             if (!swapped) {
                 break;

@@ -3,7 +3,11 @@ public class Visualiser {
 
     public static void main(String[] args) throws InterruptedException {
         int[] arr = {15,14,13,12,11,20,19,18,17,16,5,4,3,2,1,10,9,8,7,6};
-        Sorter ins = new InsertionSort();
-        ins.sort(arr);
+        Sorter sorter = new BubbleSort();
+        sorter.sort(arr);
+
+        for (int i : arr) {
+            System.out.println(i);
+        }
     }
 }
