@@ -5,8 +5,8 @@ public class SelectionSort extends Sorter {
 
     @Override
     public void stats() {
-        System.out.println("Number Comparisons: " + comp);
-        System.out.println("Number Swaps:       " + swap);
+        System.out.println("Number Comparisons:   " + comp);
+        System.out.println("Number Swaps:         " + swap);
     }
 
     @Override

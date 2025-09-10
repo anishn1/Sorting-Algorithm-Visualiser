@@ -1,0 +1,77 @@
+public class MergeSort extends Sorter {
+
+    int comp = 0;
+    int copy = 0;
+
+    @Override
+    public void stats() {
+        System.out.println("Number comparisons:   " + comp);
+        System.out.println("Number copies:        " + copy);
+    }
+
+    @Override
+    public void sort(int[] arr) throws InterruptedException {
+        mergeSort(arr, 0, arr.length - 1);
+    }
+
+    private void mergeSort(int[] arr, int left, int right) throws InterruptedException {
+        if (left == right) {
+            return;
+        }
+        int mid = (left + right) / 2;
+        mergeSort(arr, left, mid);
+        printArrayPos(arr, left, mid);
+        Thread.sleep(100);
+        mergeSort(arr, mid + 1, right);
+        printArrayPos(arr, mid + 1, right);
+        Thread.sleep(100);
+        merge(arr, left, mid, right);
+        printArrayPos(arr, left, right);
+        Thread.sleep(100);
+    }
+
+    private void merge(int[] arr, int left, int mid, int right) throws InterruptedException {
+        int len1 = mid - left + 1;
+        int len2 = right - mid;
+        int[] leftArr = new int[len1];
+        for (int i = 0; i < len1; i++) {
+            leftArr[i] = arr[left + i];
+        }
+        int[] rightArr = new int[len2];
+        for (int j = 0; j < len2; j++) {
+            rightArr[j] = arr[mid+1+j];
+        }
+        int i = 0;
+        int j = 0;
+        int pos = left;
+        while (i < len1 && j < len2) {
+            comp++;
+            if (leftArr[i] < rightArr[j]) {
+                arr[pos] = leftArr[i]; i++;
+            } else {
+                arr[pos] = rightArr[j];
+                j++;
+            }
+            copy++;
+            pos++;
+            printArrayPos(arr, left, right);
+            Thread.sleep(100);
+        }
+        while (i < len1) {
+            arr[pos] = leftArr[i];
+            pos++;
+            i++;
+            copy++;
+            printArrayPos(arr, left, right);
+            Thread.sleep(100);
+        }
+        while (j < len2) {
+            arr[pos] = rightArr[j];
+            pos++;
+            j++;
+            copy++;
+            printArrayPos(arr, left, right);
+            Thread.sleep(100);
+        }
+    }
+}
