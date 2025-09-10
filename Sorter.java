@@ -22,7 +22,7 @@ public abstract class Sorter {
             }
             String bar = "#".repeat(scaled);
             if (i==pos1 || i==pos2) {
-                System.out.printf("\u001B[32m%02d: >> %s%n\u001B[0m", i, bar);
+                System.out.printf("\u001B[32m%02d: >> %s%n\u001B[0m", arr[i], bar);
             } else {
                 System.out.printf("%02d:    %s%n", arr[i], bar);
             }
