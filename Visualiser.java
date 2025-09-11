@@ -2,29 +2,39 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 public class Visualiser {
 //     private static final int SIZE = 10; // sizeof array
 
     public static void main(String[] args) throws InterruptedException {
 //        int[] arr = {15,14,13,12,11,20,19,18,17,16,5,4,3,2,1,10,9,8,7,6};
-        int[] arr = generateReverseArray(20);
 
-        if (args.length == 0) {
-            Sorter sorter = new MergeSort();
-            sorter.sort(arr);
-        }
-        for (String i : args) {
-            switch (i) {
+        int size = 20;
+
+        for (int i = 0; i < args.length; i++) {
+            switch (args[i]) {
                 case "--help": {
                     help();
                     return;
                 }
+                case "--size": {
+                    size = Integer.parseInt(args[i+1]);
+                    i++;
+                    if (size <= 0) {
+                        System.out.println("Size must be positive");
+                        return;
+                    }
+                    break;
+                }
                 default: {
-                    Sorter sorter = new MergeSort();
-                    sorter.sort(arr);
+                    System.out.println("Unexpected argument " + args[i]);
+                    return;
                 }
             }
         }
+        int[] arr = generateReverseArray(size);
+        Sorter sorter = new MergeSort();
+        sorter.sort(arr);
     }
 
     private static void help() {
