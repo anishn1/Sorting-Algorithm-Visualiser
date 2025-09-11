@@ -11,12 +11,12 @@ public class SelectionSort extends Sorter {
 
     @Override
     public void sort(int[] arr) throws InterruptedException {
-
+        int max = maxArray(arr);
         for (int i = 0; i < arr.length - 1; i++) {
             int minId = i;
             for (int j = i + 1; j < arr.length; j++) {
-                printArrayPos(arr, minId, j);
-                Thread.sleep(100);
+                printArrayPos(arr, minId, j, max);
+                Thread.sleep(DELAY);
                 comp++;
                 if (arr[j] < arr[minId]) {
                     minId = j;

@@ -1,5 +1,4 @@
 public class MergeSort extends Sorter {
-
     int comp = 0;
     int copy = 0;
 
@@ -11,26 +10,27 @@ public class MergeSort extends Sorter {
 
     @Override
     public void sort(int[] arr) throws InterruptedException {
-        mergeSort(arr, 0, arr.length - 1);
+        int max = maxArray(arr);
+        mergeSort(arr, 0, arr.length - 1, max);
     }
 
-    private void mergeSort(int[] arr, int left, int right) throws InterruptedException {
+    private void mergeSort(int[] arr, int left, int right, int max) throws InterruptedException {
         if (left == right) {
             return;
         }
         int mid = (left + right) / 2;
-        mergeSort(arr, left, mid);
-        printArrayPos(arr, left, mid);
-        Thread.sleep(100);
-        mergeSort(arr, mid + 1, right);
-        printArrayPos(arr, mid + 1, right);
-        Thread.sleep(100);
-        merge(arr, left, mid, right);
-        printArrayPos(arr, left, right);
-        Thread.sleep(100);
+        mergeSort(arr, left, mid, max);
+        printArrayPos(arr, left, mid, max);
+        Thread.sleep(DELAY);
+        mergeSort(arr, mid + 1, right, max);
+        printArrayPos(arr, mid + 1, right, max);
+        Thread.sleep(DELAY);
+        merge(arr, left, mid, right, max);
+        printArrayPos(arr, left, right,max);
+        Thread.sleep(DELAY);
     }
 
-    private void merge(int[] arr, int left, int mid, int right) throws InterruptedException {
+    private void merge(int[] arr, int left, int mid, int right, int max) throws InterruptedException {
         int len1 = mid - left + 1;
         int len2 = right - mid;
         int[] leftArr = new int[len1];
@@ -54,24 +54,24 @@ public class MergeSort extends Sorter {
             }
             copy++;
             pos++;
-            printArrayPos(arr, left, right);
-            Thread.sleep(100);
+            printArrayPos(arr, left, right, max);
+            Thread.sleep(DELAY);
         }
         while (i < len1) {
             arr[pos] = leftArr[i];
             pos++;
             i++;
             copy++;
-            printArrayPos(arr, left, right);
-            Thread.sleep(100);
+            printArrayPos(arr, left, right, max);
+            Thread.sleep(DELAY);
         }
         while (j < len2) {
             arr[pos] = rightArr[j];
             pos++;
             j++;
             copy++;
-            printArrayPos(arr, left, right);
-            Thread.sleep(100);
+            printArrayPos(arr, left, right, max);
+            Thread.sleep(DELAY);
         }
     }
 }

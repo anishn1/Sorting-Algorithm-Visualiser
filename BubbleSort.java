@@ -11,6 +11,7 @@ public class BubbleSort extends Sorter {
 
     @Override
     public void sort(int[] arr) throws InterruptedException {
+        int max = maxArray(arr);
         for (int i = 0; i < arr.length - 1; i++) {
             boolean swapped = false;
             for (int j = 0; j < arr.length - i - 1; j++) {
@@ -22,8 +23,8 @@ public class BubbleSort extends Sorter {
                     swap++;
                     swapped = true;
                 }
-                printArrayPos(arr, j, j+1);
-                Thread.sleep(50);
+                printArrayPos(arr, j, j+1, max);
+                Thread.sleep(DELAY);
             }
             if (!swapped) {
                 break;
