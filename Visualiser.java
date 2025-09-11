@@ -8,12 +8,31 @@ public class Visualiser {
     public static void main(String[] args) throws InterruptedException {
 //        int[] arr = {15,14,13,12,11,20,19,18,17,16,5,4,3,2,1,10,9,8,7,6};
         int[] arr = generateReverseArray(20);
-        Sorter sorter = new MergeSort();
-        sorter.sort(arr);
 
-        for (int i : arr) {
-            System.out.println(i);
+        if (args.length == 0) {
+            Sorter sorter = new MergeSort();
+            sorter.sort(arr);
         }
+        for (String i : args) {
+            switch (i) {
+                case "--help": {
+                    help();
+                    return;
+                }
+                default: {
+                    Sorter sorter = new MergeSort();
+                    sorter.sort(arr);
+                }
+            }
+        }
+    }
+
+    private static void help() {
+        System.out.println("Usage:    java Visualiser [options]");
+        System.out.println("Options:");
+        System.out.println("  --help                 Print this help message");
+        System.out.println("  --sort <algorithm>     Choose algorithm: bubble (default), selection, insertion, merge");
+        System.out.println("  --size <num>           Set array size (default 20)");
     }
 
 //    private static int[] generateRandomArray(int size) {
