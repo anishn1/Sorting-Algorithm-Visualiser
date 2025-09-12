@@ -52,7 +52,7 @@ public class Visualiser {
             }
         }
 
-        int[] arr = generateReverse(size);
+        int[] arr = generateNearlySorted(size);
         Sorter sorter;
         switch (algorithm) {
             case "bubble": {
@@ -77,7 +77,6 @@ public class Visualiser {
             }
         }
         sorter.sort(arr);
-
     }
 
     private static void help() {
@@ -120,6 +119,19 @@ public class Visualiser {
             int temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
+        }
+        return arr;
+    }
+    private static int[] generateNearlySorted(int size) {
+        int[] arr = generateSorted(size);
+        Random r = new Random();
+        int swaps = Math.max(1, size/10); // 10% swapped
+        for (int i = 0; i < swaps; i++) {
+            int pos1 = r.nextInt(size);
+            int pos2 = r.nextInt(size);
+            int temp = arr[pos1];
+            arr[pos1] = arr[pos2];
+            arr[pos2] = temp;
         }
         return arr;
     }
