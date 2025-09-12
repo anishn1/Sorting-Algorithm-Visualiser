@@ -10,7 +10,7 @@ public class Visualiser {
 //        int[] arr = {15,14,13,12,11,20,19,18,17,16,5,4,3,2,1,10,9,8,7,6};
 
         int size = 20;
-
+        String algorithm = "bubble";
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "--help": {
@@ -26,15 +26,50 @@ public class Visualiser {
                     }
                     break;
                 }
+                case "--sort": {
+                    algorithm = args[i+1].toLowerCase();
+                    i++;
+                    break;
+                }
                 default: {
                     System.out.println("Unexpected argument " + args[i]);
                     return;
                 }
             }
         }
+
         int[] arr = generateReverseArray(size);
-        Sorter sorter = new MergeSort();
-        sorter.sort(arr);
+        Sorter sorter;
+        switch (algorithm) {
+            case "bubble": {
+                sorter = new BubbleSort();
+                sorter.sort(arr);
+                return;
+            }
+            case "selection": {
+                sorter = new SelectionSort();
+                sorter.sort(arr);
+                return;
+            }
+            case "insertion": {
+                sorter = new InsertionSort();
+                sorter.sort(arr);
+                break;
+            }
+            case "merge": {
+                sorter = new MergeSort();
+                sorter.sort(arr);
+                return;
+            }
+            default: {
+                System.out.println("Unexpected algorithm " + algorithm);
+                return;
+            }
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(i + ":   " + arr[i]);
+        }
+
     }
 
     private static void help() {

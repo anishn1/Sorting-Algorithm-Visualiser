@@ -12,7 +12,7 @@ public class InsertionSort extends Sorter {
     @Override
     public void sort(int[] arr) throws InterruptedException {
         int max = maxArray(arr);
-        for (int i = 1; i < arr.length - 1; i++) {
+        for (int i = 1; i < arr.length; i++) {
             int temp = arr[i];
             int j = i - 1;
             printArrayPos(arr, i, -1, max);

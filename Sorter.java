@@ -2,7 +2,7 @@ public abstract class Sorter {
     public abstract void stats();
     public abstract void sort(int[] arr) throws InterruptedException;
     private static final int WIDTH = 100; // max num of # for each bar
-    protected static final int DELAY = 50;
+    protected static final int DELAY = 25;
     protected int maxArray(int[] arr) {
         int max = arr[0];
         for (int i = 1; i < arr.length; i++) {
