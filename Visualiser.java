@@ -1,14 +1,15 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
 import java.util.Random;
 
 
 public class Visualiser {
 
+    static int size = 20;                  // default size
+    static String algorithm = "bubble";    // default sort
+    static String arrType = "random";      // default array type
+    static int nearlyPortion = 10;         // default nearly sorted portion
     public static void main(String[] args) throws InterruptedException {
-        int size = 20;                  // default size
-        String algorithm = "bubble";    // default sort
+
 
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
@@ -45,6 +46,27 @@ public class Visualiser {
                     }
                     break;
                 }
+                case "--array": {
+                    if (i+1 < args.length) {
+                        arrType = args[i+1].toLowerCase();
+                        i++;
+                        break;
+                    } else {
+                        System.out.println("No array type specified");
+                        return;
+                    }
+                }
+                case "--nearly": {
+                    arrType = "nearly";
+                    if (i+1 < args.length) {
+                        nearlyPortion = Integer.parseInt(args[i+1]);
+                        i++;
+                    } else {
+                        System.out.println("No nearly portion specified");
+                        return;
+                    }
+                    break;
+                }
                 default: {
                     System.out.println("Unexpected argument " + args[i]);
                     return;
@@ -52,7 +74,29 @@ public class Visualiser {
             }
         }
 
-        int[] arr = generateNearlySorted(size);
+        int[] arr;
+        switch (arrType) {
+            case "random": {
+                arr = generateRandom(size);
+                break;
+            }
+            case "nearly": {
+                arr = generateNearlySorted(size);
+                break;
+            }
+            case "sorted": {
+                arr = generateSorted(size);
+                break;
+            }
+            case "reversed": {
+                arr = generateReverse(size);
+                break;
+            }
+            default: {
+                System.out.println("Unexpected argument " + arrType);
+                return;
+            }
+        }
         Sorter sorter;
         switch (algorithm) {
             case "bubble": {
@@ -85,17 +129,9 @@ public class Visualiser {
         System.out.println("  --help                 Print this help message");
         System.out.println("  --sort <algorithm>     Choose algorithm: bubble (default), selection, insertion, merge");
         System.out.println("  --size <num>           Set array size (default 20)");
+        System.out.println("  --array <type>         Choose array type: random (default), nearly, sorted, reversed");
+        System.out.println("  --nearly <n%>          Set array type nearly sorted, with swap portion n% (default 10%)");
     }
-
-//    private static int[] generateRandomArray(int size) {
-//        List<Integer> list = new ArrayList<>(size);
-//        for (int i = 0; i < size; i++) {
-//            list.set(i, i + 1);
-//        }
-//        Collections.shuffle(list);
-//        int[] arr = list.toArray(new Integer[0]);
-//        return arr;
-//    }
 
     private static int[] generateReverse(int size) {
         int[] arr = new int[size];
@@ -125,7 +161,7 @@ public class Visualiser {
     private static int[] generateNearlySorted(int size) {
         int[] arr = generateSorted(size);
         Random r = new Random();
-        int swaps = Math.max(1, size/10); // 10% swapped
+        int swaps = Math.max(1, (size * nearlyPortion) /100); // 10% swapped
         for (int i = 0; i < swaps; i++) {
             int pos1 = r.nextInt(size);
             int pos2 = r.nextInt(size);
