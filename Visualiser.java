@@ -18,17 +18,32 @@ public class Visualiser {
                     return;
                 }
                 case "--size": {
-                    size = Integer.parseInt(args[i+1]);
-                    i++;
-                    if (size <= 0) {
-                        System.out.println("Size must be positive");
+                    if (i+1 < args.length) {
+                        try {
+                            size = Integer.parseInt(args[i + 1]);
+                            i++;
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid size: " + args[i + 1]);
+                            return;
+                        }
+                        if (size <= 0) {
+                            System.out.println("Size must be positive");
+                            return;
+                        }
+                    } else {
+                        System.out.println("No size specified");
                         return;
                     }
                     break;
                 }
                 case "--sort": {
-                    algorithm = args[i+1].toLowerCase();
-                    i++;
+                    if (i+1 < args.length) {
+                        algorithm = args[i + 1].toLowerCase();
+                        i++;
+                    } else {
+                        System.out.println("No sort algorithm specified");
+                        return;
+                    }
                     break;
                 }
                 default: {
@@ -43,32 +58,26 @@ public class Visualiser {
         switch (algorithm) {
             case "bubble": {
                 sorter = new BubbleSort();
-                sorter.sort(arr);
-                return;
+                break;
             }
             case "selection": {
                 sorter = new SelectionSort();
-                sorter.sort(arr);
-                return;
+                break;
             }
             case "insertion": {
                 sorter = new InsertionSort();
-                sorter.sort(arr);
                 break;
             }
             case "merge": {
                 sorter = new MergeSort();
-                sorter.sort(arr);
-                return;
+                break;
             }
             default: {
                 System.out.println("Unexpected algorithm " + algorithm);
                 return;
             }
         }
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(i + ":   " + arr[i]);
-        }
+        sorter.sort(arr);
 
     }
 
