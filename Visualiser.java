@@ -1,16 +1,15 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 
 public class Visualiser {
-//     private static final int SIZE = 10; // sizeof array
 
     public static void main(String[] args) throws InterruptedException {
-//        int[] arr = {15,14,13,12,11,20,19,18,17,16,5,4,3,2,1,10,9,8,7,6};
+        int size = 20;                  // default size
+        String algorithm = "bubble";    // default sort
 
-        int size = 20;
-        String algorithm = "bubble";
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "--help": {
@@ -53,7 +52,7 @@ public class Visualiser {
             }
         }
 
-        int[] arr = generateReverseArray(size);
+        int[] arr = generateReverse(size);
         Sorter sorter;
         switch (algorithm) {
             case "bubble": {
@@ -99,10 +98,28 @@ public class Visualiser {
 //        return arr;
 //    }
 
-    private static int[] generateReverseArray(int size) {
+    private static int[] generateReverse(int size) {
         int[] arr = new int[size];
         for (int i = 0; i < size; i++) {
             arr[i] = size - i;
+        }
+        return arr;
+    }
+    private static int[] generateSorted(int size) {
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = i + 1;
+        }
+        return arr;
+    }
+    private static int[] generateRandom(int size) {
+        int[] arr = generateSorted(size);
+        Random r = new Random();
+        for (int i = size - 1; i > 0; i--) {
+            int j = r.nextInt(i + 1);
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
         }
         return arr;
     }
