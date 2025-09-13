@@ -29,7 +29,7 @@ public class ShakerSort extends Sorter {
                     swapped = true;
                 }
                 printArrayPos(arr, i, i + 1, max);
-                Thread.sleep(50);
+                Thread.sleep(DELAY);
             }
             if (!swapped) {break;}
             swapped = false;
@@ -44,7 +44,7 @@ public class ShakerSort extends Sorter {
                     swapped = true;
                 }
                 printArrayPos(arr, i, i + 1, max);
-                Thread.sleep(50);
+                Thread.sleep(DELAY);
             }
             start++;
         }

@@ -10,7 +10,9 @@ Supports multiple sorting algorithms, array sizes, and array orderings using fle
   - Bubble Sort
   - Selection Sort
   - Insertion Sort
-  - Bubble Sort
+  - Merge Sort
+  - Shaker Sort
+  - Gnome Sort
 - Configurable array generation:
   - Random Array
   - Sorted Array
@@ -28,7 +30,7 @@ java Visualiser [options]
 ## Options
 ```bash
   --help                 Print this help message
-  --sort <algorithm>     Choose algorithm: bubble (default), selection, insertion, merge
+  --sort <algorithm>     Choose algorithm: bubble (default), selection, insertion, merge, shaker, gnome
   --size <num>           Set array size (default 20)
   --array <type>         Choose array type: random (default), nearly, sorted, reversed
   --nearly <n%>          Set array type nearly sorted, with swap portion n% (default 10%)

@@ -119,6 +119,10 @@ public class Visualiser {
                 sorter = new ShakerSort();
                 break;
             }
+            case "gnome": {
+                sorter = new GnomeSort();
+                break;
+            }
             default: {
                 System.out.println("Unexpected algorithm " + algorithm);
                 return;
