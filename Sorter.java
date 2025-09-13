@@ -1,7 +1,7 @@
 public abstract class Sorter {
     public abstract void stats();
     public abstract void sort(int[] arr) throws InterruptedException;
-    private static final int WIDTH = 100; // max num of # for each bar
+    protected static int width = 100; // max num of # for each bar
     protected static final int DELAY = 50;
     protected int maxArray(int[] arr) {
         int max = arr[0];
@@ -19,7 +19,7 @@ public abstract class Sorter {
         System.out.println("pos1 = " + pos1);
         System.out.println("pos2 = " + pos2);
         for (int i = 0; i < arr.length; i++) {
-            int scaled = (arr[i] * WIDTH) / max;
+            int scaled = (arr[i] * width) / max;
             if (scaled < 1) {
                 scaled = 1;
             }

@@ -67,6 +67,21 @@ public class Visualiser {
                     }
                     break;
                 }
+                case "--width": {
+                    if (i+1 < args.length) {
+                        try {
+                            Sorter.width = Integer.parseInt(args[i+1]);
+                            i++;
+                            break;
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid width: " + args[i+1]);
+                            return;
+                        }
+                    } else {
+                        System.out.println("No width specified");
+                        return;
+                    }
+                }
                 default: {
                     System.out.println("Unexpected argument " + args[i]);
                     return;
@@ -139,10 +154,11 @@ public class Visualiser {
         System.out.println("Usage:    java Visualiser [options]");
         System.out.println("Options:");
         System.out.println("  --help                 Print this help message");
-        System.out.println("  --sort <algorithm>     Choose algorithm: bubble (default), selection, insertion, merge");
+        System.out.println("  --sort <algorithm>     Choose algorithm: bubble (default), selection, insertion, merge, shaker, gnome, quick");
         System.out.println("  --size <num>           Set array size (default 20)");
         System.out.println("  --array <type>         Choose array type: random (default), nearly, sorted, reversed");
         System.out.println("  --nearly <n%>          Set array type nearly sorted, with swap portion n% (default 10%)");
+        System.out.println("  --width <num>          Set bar width (default 100)");
     }
 
     private static int[] generateReverse(int size) {
