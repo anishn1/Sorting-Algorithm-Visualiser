@@ -115,6 +115,10 @@ public class Visualiser {
                 sorter = new MergeSort();
                 break;
             }
+            case "shaker": {
+                sorter = new ShakerSort();
+                break;
+            }
             default: {
                 System.out.println("Unexpected algorithm " + algorithm);
                 return;

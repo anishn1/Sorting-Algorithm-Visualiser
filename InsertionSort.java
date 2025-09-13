@@ -5,6 +5,7 @@ public class InsertionSort extends Sorter {
 
     @Override
     public void stats() {
+        System.out.println("Insertion Sort");
         System.out.println("Number Comparisons:   " + comp);
         System.out.println("Number Swaps:         " + swap);
     }

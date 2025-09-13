@@ -4,6 +4,7 @@ public class MergeSort extends Sorter {
 
     @Override
     public void stats() {
+        System.out.println("Merge Sort");
         System.out.println("Number comparisons:   " + comp);
         System.out.println("Number copies:        " + copy);
     }

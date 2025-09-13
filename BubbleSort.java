@@ -5,6 +5,7 @@ public class BubbleSort extends Sorter {
 
     @Override
     public void stats() {
+        System.out.println("Bubble Sort");
         System.out.println("Number Comparisons:   " + comp);
         System.out.println("Number Swaps:         " + swap);
     }
