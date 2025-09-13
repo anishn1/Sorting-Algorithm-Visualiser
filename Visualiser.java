@@ -123,6 +123,10 @@ public class Visualiser {
                 sorter = new GnomeSort();
                 break;
             }
+            case "quick": {
+                sorter = new QuickSort();
+                break;
+            }
             default: {
                 System.out.println("Unexpected algorithm " + algorithm);
                 return;
