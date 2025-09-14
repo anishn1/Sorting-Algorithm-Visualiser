@@ -142,6 +142,10 @@ public class Visualiser {
                 sorter = new QuickSort();
                 break;
             }
+            case "heap": {
+                sorter = new HeapSort();
+                break;
+            }
             default: {
                 System.out.println("Unexpected algorithm " + algorithm);
                 return;
@@ -154,7 +158,7 @@ public class Visualiser {
         System.out.println("Usage:    java Visualiser [options]");
         System.out.println("Options:");
         System.out.println("  --help                 Print this help message");
-        System.out.println("  --sort <algorithm>     Choose algorithm: bubble (default), selection, insertion, merge, shaker, gnome, quick");
+        System.out.println("  --sort <algorithm>     Choose algorithm: bubble (default), selection, insertion, merge, shaker, gnome, quick, heap");
         System.out.println("  --size <num>           Set array size (default 20)");
         System.out.println("  --array <type>         Choose array type: random (default), nearly, sorted, reversed");
         System.out.println("  --nearly <n%>          Set array type nearly sorted, with swap portion n% (default 10%)");
