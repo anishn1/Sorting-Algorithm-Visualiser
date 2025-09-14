@@ -72,6 +72,10 @@ public class Visualiser {
                         try {
                             Sorter.width = Integer.parseInt(args[i+1]);
                             i++;
+                            if (Sorter.DELAY <= 0) {
+                                System.out.println("Width must be positive");
+                                return;
+                            }
                             break;
                         } catch (NumberFormatException e) {
                             System.out.println("Invalid width: " + args[i+1]);
@@ -79,6 +83,25 @@ public class Visualiser {
                         }
                     } else {
                         System.out.println("No width specified");
+                        return;
+                    }
+                }
+                case "--delay": {
+                    if (i+1 < args.length) {
+                        try {
+                            Sorter.DELAY = Integer.parseInt(args[i+1]);
+                            i++;
+                            if (Sorter.DELAY <= 0) {
+                                System.out.println("Delay must be positive");
+                                return;
+                            }
+                            break;
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid delay: " + args[i+1]);
+                            return;
+                        }
+                    } else {
+                        System.out.println("No delay specified");
                         return;
                     }
                 }
@@ -163,6 +186,7 @@ public class Visualiser {
         System.out.println("  --array <type>         Choose array type: random (default), nearly, sorted, reversed");
         System.out.println("  --nearly <n%>          Set array type nearly sorted, with swap portion n% (default 10%)");
         System.out.println("  --width <num>          Set bar width (default 100)");
+        System.out.println("  --delay <num>          Set delay timing for visualiser");
     }
 
     private static int[] generateReverse(int size) {

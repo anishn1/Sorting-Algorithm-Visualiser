@@ -55,7 +55,7 @@ public class HeapSort extends Sorter {
             arr[largest] = temp;
             swap++;
 
-            printArrayPos(arr, index, largest, maxArray(arr));  // 🔹 visualize
+            printArrayPos(arr, index, largest, maxArray(arr));
             Thread.sleep(DELAY);
 
             heapify(arr, size, largest);
